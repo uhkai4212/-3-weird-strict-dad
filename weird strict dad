@@ -1,0 +1,97 @@
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/SixZensED/Backups/refs/heads/main/Xelora%20Lib%202.lua"))()
+
+local main = library:CreateWindow({Title = "XYZ Hub (weird strict dad)", Icon = 127435222710292})
+
+-- Main Tab
+local mainTab = main:CreateTab({Title = "Main Tab"})
+local mainSection = mainTab:CreateSection({Title = "Main Section", Side = "l"})
+
+-- Button: Turn Off Lights
+mainSection:CreateButton({
+    Title = "Turn Off Lights",
+    callback = function()
+        -- Define the locations
+        local lightPositions = {
+            Vector3.new(-139, 18, 66),
+            Vector3.new(-138, 18, 37),
+            Vector3.new(-166, 18, 33),
+            Vector3.new(-167, 5, 62),
+            Vector3.new(-115, 5, 58),
+            Vector3.new(-104, 5, 35),
+        }
+
+        -- Function to teleport and wait
+        for _, position in ipairs(lightPositions) do
+            local player = game.Players.LocalPlayer
+            local character = player.Character or player.CharacterAdded:Wait()
+            local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+            -- Teleport the player
+            humanoidRootPart.CFrame = CFrame.new(position)
+
+            -- Wait for 3 seconds before moving to the next position
+            wait(3)
+        end
+    end,
+})
+
+-- Button: Clean Up Garbages
+mainSection:CreateButton({
+    Title = "Clean Up Garbages",
+    callback = function()
+        -- Define the locations
+        local garbagePositions = {
+            Vector3.new(-108, 5, 42),
+            Vector3.new(-119, 5, 41),
+            Vector3.new(-146, 5, 46),
+            Vector3.new(-158, 5, 62),
+            Vector3.new(-165, 18, 33),
+            Vector3.new(-148, 18, 17),
+            Vector3.new(-155, 18, 59),
+        }
+
+        -- Function to teleport and wait
+        for _, position in ipairs(garbagePositions) do
+            local player = game.Players.LocalPlayer
+            local character = player.Character or player.CharacterAdded:Wait()
+            local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+            -- Teleport the player
+            humanoidRootPart.CFrame = CFrame.new(position)
+
+            -- Wait for 6 seconds before moving to the next position
+            wait(6)
+        end
+    end,
+})
+
+-- Actions Label
+mainSection:CreateLabel({Title = "Actions"})
+
+-- Teleport Tab
+local teleportTab = main:CreateTab({Title = "Teleports"})
+local teleportSection = teleportTab:CreateSection({Title = "Teleport Buttons", Side = "l"})
+
+-- Function to create teleport buttons
+local function createTeleportButton(title, position)
+    teleportSection:CreateButton({
+        Title = title,
+        callback = function()
+            local player = game.Players.LocalPlayer
+            local character = player.Character or player.CharacterAdded:Wait()
+            local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+            -- Teleport the player
+            humanoidRootPart.CFrame = CFrame.new(position)
+        end,
+    })
+end
+
+-- Teleport Buttons
+createTeleportButton("Drink", Vector3.new(-125, 5, 26))
+createTeleportButton("Food", Vector3.new(-120, 5, 18))
+createTeleportButton("Refill", Vector3.new(-154, 5, 42))
+createTeleportButton("AC", Vector3.new(-139, 18, 46))
+createTeleportButton("Sleep", Vector3.new(-120, 20, 46))
+createTeleportButton("TV", Vector3.new(-146, 6, 61))
+createTeleportButton("Front Door", Vector3.new(-105, 5, 41))
